@@ -5,6 +5,7 @@ export const App = ()=>{
         <div>
         
           Project website with courses simple React!
+          <h1>prickled</h1>
         </div>
     )
 }
