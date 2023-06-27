@@ -4,7 +4,7 @@ export const App = ()=>{
     return(
         <div>
         
-          Project website with courses simple React
+          Project website with courses simple React!
         </div>
     )
 }
