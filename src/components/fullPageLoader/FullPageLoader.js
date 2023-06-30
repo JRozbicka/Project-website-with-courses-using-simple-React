@@ -11,8 +11,7 @@ export const FullPageLoader = (props) =>{
             className = {`${classes.root}${className ? `${className}` : '' }`}
             {...otherProps}
             >
-            FullPageLoader
-            <Spinner />
+          <Spinner  className = {classes.spinner}/>
         </div>
     )
 }
