@@ -30,12 +30,16 @@ export class App extends React.Component{
     searchPhrases:''
   }
   render(){
-
+const {isLoading} = this.state
   
     return(
         <div>
         <h1>CodeRoad</h1>
+        {isLoading ?
         <FullPageLoader/>
+        :
+        null
+        }
         </div>
     )
 }
