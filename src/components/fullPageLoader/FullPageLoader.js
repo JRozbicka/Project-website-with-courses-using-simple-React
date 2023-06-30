@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './styles.module.css'
+import Spinner from "./Spinner";
 export const FullPageLoader = (props) =>{
     const {
         className,
@@ -11,6 +12,7 @@ export const FullPageLoader = (props) =>{
             {...otherProps}
             >
             FullPageLoader
+            <Spinner />
         </div>
     )
 }
