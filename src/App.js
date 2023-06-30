@@ -1,4 +1,5 @@
 import React from "react";
+import FullPageLoader from "./components/fullPageLoader";
 
 export class App extends React.Component{
   state= {
@@ -33,10 +34,8 @@ export class App extends React.Component{
   
     return(
         <div>
-        
-          Project website with courses simple React!
-          <h1>prickled</h1>
-          <h1>test2</h1>
+        <h1>CodeRoad</h1>
+        <FullPageLoader/>
         </div>
     )
 }
