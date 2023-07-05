@@ -10,7 +10,7 @@ export const Typography = (props) =>{
         ...otherProps
     } = props
     const variantClasses= classes[variant]
-    console.log(variantClasses)
+   
     return(
         <span
             className = {`${classes.root}${className ? ` ${className}` : ''}
