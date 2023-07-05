@@ -5,6 +5,7 @@
     cursor: pointer;
     border-radius: 4px;
     padding: 4px,10px,4px,10px;
+    transition: background-color 0.35s ease-out;
 }
 .contained{
     color: white;
@@ -15,13 +16,19 @@
 .contained.primary {
     background-color: #323330;
   }
+  .contained.primary:hover {
+    background-color: #acd360;
+  }
+  .contained.secondary:hover {
+    background-color: #f3e272;
+  }
   .contained.secondary {
     background-color: #F0DB4F;
   }
+  .contained.secondary:hover {
+    background-color: #6e673a;
+  }
 
-
-.text{}
-.primary{}
-.secondary{
-
-}
+  .text:hover {
+    background-color: #ebebea;
+  }
