@@ -2,6 +2,7 @@ import React from "react";
 import FullPageLoader from "./components/fullPageLoader";
 import Typography from "./components/Typography";
 import Button from './components/Button'
+import FullPageMessage from "./components/FullPageMessage/FullPageMessage";
 export class App extends React.Component{
   state= {
     // global state
@@ -69,6 +70,8 @@ const {isLoading} = this.state
         color={'primary'}>
           TEXT PRIMARY
         </Button>
+        <FullPageMessage
+        message={'info'}/>
         </div>
     )
 }
