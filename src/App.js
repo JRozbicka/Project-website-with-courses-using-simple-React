@@ -32,7 +32,9 @@ export class App extends React.Component{
     searchPhrases:''
   }
   render(){
-const {isLoading} = this.state
+const {isLoading,isInfoDisplayed,infoMessage,
+hasError,
+errorMessage} = this.state
   
     return(
         <div>
@@ -70,8 +72,21 @@ const {isLoading} = this.state
         color={'primary'}>
           TEXT PRIMARY
         </Button>
+       
+        {isInfoDisplayed ?
         <FullPageMessage
-        message={'info'}/>
+        message={infoMessage}
+        iconVariant={'info'}
+        onButtonClick={console.log()}/>
+        :
+        null}
+             {hasError ?
+        <FullPageMessage
+        message={errorMessage}
+        iconVariant={'error'}
+        onButtonClick={console.log()}/>
+        :
+        null}
         </div>
     )
 }
