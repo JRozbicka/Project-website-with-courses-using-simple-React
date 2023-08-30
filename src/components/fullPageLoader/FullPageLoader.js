@@ -1,18 +1,28 @@
-import React from "react";
-import classes from './styles.module.css'
-import Spinner from "./Spinner";
-export const FullPageLoader = (props) =>{
-    const {
-        className,
-        ...otherProps
-    } = props
-    return(
-        <div
-            className = {`${classes.root}${className ? `${className}` : '' }`}
-            {...otherProps}
-            >
-          <Spinner  className = {classes.spinner}/>
-        </div>
-    )
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import FullPageLayout from '../FullPageLayout'
+import Loader from '../Loader'
+
+export const FullPageLoader = (props) => {
+  const {
+    wrapperProps,
+    ...otherProps
+  } = props
+
+  return (
+    <FullPageLayout
+      {...wrapperProps}
+    >
+      <Loader
+        {...otherProps}
+      />
+    </FullPageLayout>
+  )
 }
+
+FullPageLoader.propTypes = {
+  wrapperProps: PropTypes.object
+}
+
 export default FullPageLoader
