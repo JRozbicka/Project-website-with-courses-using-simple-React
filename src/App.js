@@ -6,12 +6,13 @@ import Message from "./components/Message";
 import FullPageLoader from "./components/FullPageLoader";
 import FullPageMessage from "./components/FullPageMessage/FullPageMessage";
 import FullPageLayout from "./components/FullPageLayout";
+import TextField from "./components/TextField/TextField";
 export class App extends React.Component {
   state = {
     // global state
     isLoading: false,
-    hasError: true,
-    errorMessage: 'ERROr',
+    hasError: false,
+    errorMessage: ' ',
     isInfoDisplayed: false,
     infoMessage: '',
 
@@ -141,7 +142,8 @@ export class App extends React.Component {
             :
             null
         }
-
+  <TextField 
+  placeHolder ={'email'}/>
       </div>
     )
   }
