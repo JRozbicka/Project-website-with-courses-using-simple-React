@@ -1,12 +1,11 @@
 import React from "react";
 
-import Typography from "./components/Typography";
-import Button from './components/Button'
+
 import Message from "./components/Message";
 import FullPageLoader from "./components/FullPageLoader";
 import FullPageMessage from "./components/FullPageMessage/FullPageMessage";
 import FullPageLayout from "./components/FullPageLayout";
-import TextField from "./components/TextField/TextField";
+import LoginForm from "./components/LoginForm/LoginForm"
 export class App extends React.Component {
   state = {
     // global state
@@ -23,7 +22,7 @@ export class App extends React.Component {
     userAvatar: '',
 
     // router state
-    notLoginUserRoute: 'LOGIN', // 'NEW-ACCOUNT' or 'FORGOT PASSWORD'
+    notLoginUserRoute: 'LOGIN', // 'NEW-ACCOUNT' or 'FORGOT-PASSWORD'
 
     // login page state
     loginEmail: '',
@@ -48,58 +47,27 @@ export class App extends React.Component {
       isInfoDisplayed,
       infoMessage,
       hasError,
-      errorMessage
+      errorMessage,
+      notLoginUserRoute
     } = this.state
 
     return (
       <div>
-        <h1>CodeRoad APP</h1>
+{notLoginUserRoute === 'Login' ?
+<LoginForm
+ 
+ 
+ /> :
+ null
+}
+ 
         {
           isLoading ?
             <FullPageLoader />
             :
             null
         }
-        <Typography
-          variant={'h1'}
-        >
-          Header 1
-        </Typography>
-        <br />
-        <Typography
-          variant={'h3'}
-        >
-          Header 3
-        </Typography>
-        <br />
-        <Typography
-          variant={'button'}
-        >
-          Button
-        </Typography>
-        <br />
-        <Button
-          variant={'contained'}
-          color={'primary'}
-        >
-          CONTAINED PRIMARY
-        </Button>
-        <br />
-        <br />
-        <Button
-          variant={'contained'}
-          color={'secondary'}
-        >
-          CONTAINED SECONDARY
-        </Button>
-        <br />
-        <br />
-        <Button
-          variant={'text'}
-          color={'primary'}
-        >
-          TEXT PRIMARY
-        </Button>
+        
 
         {
           isInfoDisplayed ?
@@ -112,20 +80,7 @@ export class App extends React.Component {
             null
         }
 
-        {/* {
-          hasError ?
-            <FullPageMessage
-              className={'regular-class'}
-              wrapperProps={{
-                className: 'wrapper-class'
-              }}
-              message={errorMessage}
-              iconVariant={'error'}
-              onButtonClick={console.log}
-            />
-            :
-            null
-        } */}
+        {}
 
         {
           hasError ?
@@ -142,8 +97,7 @@ export class App extends React.Component {
             :
             null
         }
-  <TextField 
-  placeHolder ={'email'}/>
+
       </div>
     )
   }
