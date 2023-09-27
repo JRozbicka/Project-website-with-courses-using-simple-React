@@ -8,6 +8,13 @@ import Button from '../Button'
 
 export const LoginForm = (props) => {
   const {
+    email,
+    password,
+    onChangeEmail,
+    onChangePassword,
+    onClickLogin,
+    onClickCreateAccount,
+    onClickForgottenPassword,
     className,
     ...otherProps
   } = props
@@ -27,26 +34,34 @@ log in 👋
         </Typography>
         <TextField 
         className={classes.textField}
-        placeholder={'Email'} />
+        placeholder={'Email'} 
+        value={email}
+        onChange={onChangeEmail}/>
         <TextField 
         className={classes.textField}
-        placeholder = {'password'} />
+        placeholder = {'password'}
+        type={'password'}
+        value={password}
+        onChange={onChangePassword} />
         <Button 
         className={classes.button}
         variant={'contained'}
-        color={'primary'}>
+        color={'primary'}
+        onClick={onClickLogin}>
           Login
         </Button>
         <Button 
         className={classes.button}
         variant={'contained'}
-        color={'secondary'}>
+        color={'secondary'}
+        onClick={onClickCreateAccount}>
           Crete Account
         </Button>
         <Button 
         className={classes.button}
         variant={'text'}
-        color={'primary'}>
+        color={'primary'}
+        onClick={onClickForgottenPassword}>
           Forgotten password
         </Button>
        
@@ -55,7 +70,14 @@ log in 👋
 }
 
 LoginForm.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  email:PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    onChangeEmail:PropTypes.func.isRequired,
+    onChangePassword:PropTypes.func.isRequired,
+    onClickLogin:PropTypes.func.isRequired,
+    onClickCreateAccount:PropTypes.func.isRequired,
+    onClickForgottenPassword:PropTypes.func.isRequired
 }
 
 export default LoginForm
