@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react'
 
+import FullPageLayout from './components/FullPageLayout'
+import FullPageMessage from './components/FullPageMessage'
+import FullPageLoader from './components/FullPageLoader'
+import Message from './components/Message'
+import LoginForm from './components/LoginForm'
 
-import Message from "./components/Message";
-import FullPageLoader from "./components/FullPageLoader";
-import FullPageMessage from "./components/FullPageMessage/FullPageMessage";
-import FullPageLayout from "./components/FullPageLayout";
-import LoginForm from "./components/LoginForm/LoginForm"
 export class App extends React.Component {
   state = {
     // global state
     isLoading: false,
     hasError: false,
-    errorMessage: ' ',
+    errorMessage: '',
     isInfoDisplayed: false,
     infoMessage: '',
 
@@ -43,6 +43,8 @@ export class App extends React.Component {
 
   render () {
     const {
+      loginEmail,
+      loginPassword,
       isLoading,
       isInfoDisplayed,
       infoMessage,
@@ -53,21 +55,30 @@ export class App extends React.Component {
 
     return (
       <div>
-{notLoginUserRoute === 'Login' ?
-<LoginForm
- 
- 
- /> :
- null
-}
- 
+
+        {
+          notLoginUserRoute === 'LOGIN' ?
+            <FullPageLayout>
+              <LoginForm
+                email={loginEmail}
+                password={loginPassword}
+                onChangeEmail={(e) => this.setState(() => ({ loginEmail: e.target.value }))}
+                onChangePassword={(e) => this.setState(() => ({ loginPassword: e.target.value }))}
+                onClickLogin={() => console.log('onClickLogin')}
+                onClickCreateAccount={() => console.log('onClickCreateAccount')}
+                onClickForgotPassword={() => console.log('onClickForgotPassword')}
+              />
+            </FullPageLayout>
+            :
+            null
+        }
+
         {
           isLoading ?
             <FullPageLoader />
             :
             null
         }
-        
 
         {
           isInfoDisplayed ?
@@ -80,8 +91,6 @@ export class App extends React.Component {
             null
         }
 
-        {}
-
         {
           hasError ?
             <FullPageLayout
@@ -91,7 +100,7 @@ export class App extends React.Component {
                 className={'regular-class'}
                 message={errorMessage}
                 iconVariant={'error'}
-                onButtonClick={console.log()}
+                onButtonClick={console.log}
               />
             </FullPageLayout>
             :
