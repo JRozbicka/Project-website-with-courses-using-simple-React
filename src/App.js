@@ -6,6 +6,7 @@ import Message from './components/Message'
 import LoginForm from './components/LoginForm'
 import CreateAccountForm from './components/CreateAccountForm'
 import RecoverPasswordForm from './components/RecoverPasswordForm'
+import {signIn} from './auth/signIn'
 export class App extends React.Component {
 state = {
 // global state
@@ -34,6 +35,30 @@ recoverPasswordEmail: '',
 courses: null,
 searchPhrase: ''
 }
+
+onClickLogin = async () =>{
+  this.setState(()=>({ isLoading:true}))
+ try {
+    await signIn(this.state.loginEmail, this.state.loginPassword)
+ }
+ catch (error) {
+  this.setState(() => ({
+    hasError:true,
+    errorMessage: error.data.error.message
+  }))
+ }finally {
+  this.setState(()=>({isLoading:false}))
+ }
+
+}
+
+dismissError = () => {
+  this.setState(() => ({
+    hasError:false,
+    errorMessage: ''
+  }))
+}
+
 render () {
 const {
 loginEmail,
@@ -116,7 +141,7 @@ className={'wrapper-class'}
 className={'regular-class'}
 message={errorMessage}
 iconVariant={'error'}
-onButtonClick={console.log}
+onButtonClick={this.dismissError}
 />
 </FullPageLayout>
 :
