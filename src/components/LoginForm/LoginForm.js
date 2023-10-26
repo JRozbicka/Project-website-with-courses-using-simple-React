@@ -9,6 +9,7 @@ import Button from '../Button'
 export const LoginForm = (props) => {
   const {
     email,
+    emailError,
     password,
     onChangeEmail,
     onChangePassword,
@@ -36,6 +37,7 @@ log in 👋
         className={classes.textField}
         placeholder={'Email'} 
         value={email}
+        errorMessage={emailError}
         onChange={onChangeEmail}/>
         <TextField 
         className={classes.textField}
@@ -72,6 +74,7 @@ log in 👋
 LoginForm.propTypes = {
   className: PropTypes.string,
   email:PropTypes.string.isRequired,
+  emailError: PropTypes.string,
     password: PropTypes.string.isRequired,
     onChangeEmail:PropTypes.func.isRequired,
     onChangePassword:PropTypes.func.isRequired,

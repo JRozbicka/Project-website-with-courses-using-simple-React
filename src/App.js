@@ -1,4 +1,5 @@
 import React from 'react'
+import isEmail from 'validator/es/lib/isEmail';
 import FullPageLayout from './components/FullPageLayout'
 import FullPageMessage from './components/FullPageMessage'
 import FullPageLoader from './components/FullPageLoader'
@@ -24,6 +25,7 @@ userAvatar: '',
 notLoginUserRoute: 'LOGIN', // 'CREATE-ACCOUNT' or 'RECOVER-PASSWORD'
 // login page state
 loginEmail: '',
+loginEmailError: '',
 loginPassword: '',
 // create account page
 createAccountEmail: '',
@@ -62,6 +64,7 @@ dismissError = () => {
 render () {
 const {
 loginEmail,
+loginEmailError,
 loginPassword,
 isLoading,
 isInfoDisplayed,
@@ -81,8 +84,14 @@ notLoginUserRoute === 'LOGIN' ?
 <FullPageLayout>
 <LoginForm
 email={loginEmail}
+emailError={loginEmailError}
 password={loginPassword}
-onChangeEmail={(e) => this.setState(() => ({ loginEmail: e.target.value }))}
+onChangeEmail={(e) => {
+  this.setState(() => ({
+    loginEmail: e.target.value,
+    loginEmailError: isEmail(e.target.value) ? '' : 'Please type a valid e-mail!'
+  }))
+}}
 onChangePassword={(e) => this.setState(() => ({ loginPassword: e.target.value }))}
 onClickLogin={() => console.log('onClickLogin')}
 onClickCreateAccount={() => this.setState(() => ({ notLoginUserRoute: 'CREATE-ACCOUNT' }))}
