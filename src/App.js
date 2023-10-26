@@ -1,5 +1,5 @@
 import React from 'react'
-import isEmail from 'validator/es/lib/isEmail';
+import isEmail from 'validator/lib/isEmail';
 import FullPageLayout from './components/FullPageLayout'
 import FullPageMessage from './components/FullPageMessage'
 import FullPageLoader from './components/FullPageLoader'
@@ -27,6 +27,7 @@ notLoginUserRoute: 'LOGIN', // 'CREATE-ACCOUNT' or 'RECOVER-PASSWORD'
 loginEmail: '',
 loginEmailError: '',
 loginPassword: '',
+loginSubmitted: false,
 // create account page
 createAccountEmail: '',
 createAccountPassword: '',
@@ -38,20 +39,22 @@ courses: null,
 searchPhrase: ''
 }
 
-onClickLogin = async () =>{
-  this.setState(()=>({ isLoading:true}))
- try {
-    await signIn(this.state.loginEmail, this.state.loginPassword)
- }
- catch (error) {
-  this.setState(() => ({
-    hasError:true,
-    errorMessage: error.data.error.message
-  }))
- }finally {
-  this.setState(()=>({isLoading:false}))
- }
+onClickLogin = async () => {
+  this.setState(() => ({ loginSubmitted: true }))
 
+  if (this.state.loginEmailError) return
+
+  this.setState(() => ({ isLoading: true }))
+  try {
+    await signIn(this.state.loginEmail, this.state.loginPassword)
+  } catch (error) {
+    this.setState(() => ({
+      hasError: true,
+      errorMessage: error.data.error.message
+    }))
+  } finally {
+    this.setState(() => ({ isLoading: false }))
+  }
 }
 
 dismissError = () => {
@@ -66,6 +69,7 @@ const {
 loginEmail,
 loginEmailError,
 loginPassword,
+loginSubmitted,
 isLoading,
 isInfoDisplayed,
 infoMessage,
@@ -84,7 +88,7 @@ notLoginUserRoute === 'LOGIN' ?
 <FullPageLayout>
 <LoginForm
 email={loginEmail}
-emailError={loginEmailError}
+emailError={loginSubmitted ? loginEmailError : '' } 
 password={loginPassword}
 onChangeEmail={(e) => {
   this.setState(() => ({
